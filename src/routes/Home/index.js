@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './style.css';
 import hive from 'hiveone-js';
 import { Waypoint } from 'react-waypoint';
@@ -57,16 +57,52 @@ function Cluster(props) {
     )
 }
 
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current = value;
+    });
+    return ref.current;
+}
+
 function Home() {
     const [activeCluster, setActiveCluster] = useState('BTC');
     const [after, setAfter] = useState(0);
     const [influencers, setInfluencers] = useState([]);
+    const prevCluster = usePrevious({activeCluster, setActiveCluster});
 
     const waypointEnter = (e) => {
         if (e.event) {
             setAfter(after + 50);
         }
     }
+
+    const changeCluster = (clusterName) => {
+        setActiveCluster(clusterName);
+        setAfter(0);
+    }
+
+    useEffect(() => {
+        const getLeaderBoard = async () => {
+            try {
+                const response = await hiveAPI.topInfluencers({
+                    after,
+                    cluster: activeCluster
+                });
+                let newInfluencers;
+                if (prevCluster && prevCluster.activeCluster === activeCluster) {
+                    newInfluencers = influencers.concat(response);
+                } else {
+                    newInfluencers = response;
+                };
+                setInfluencers(newInfluencers);
+            } catch (error) {
+                throw new Error(error);
+            }
+        };
+        getLeaderBoard();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeCluster, after]);
 
     const renderInfluencers = () => {
         const rows = influencers.map((item, index) => (
@@ -84,31 +120,14 @@ function Home() {
         return rows;
     }
 
-    useEffect(() => {
-        const getLeaderBoard = async () => {
-            try {
-                const response = await hiveAPI.topInfluencers({
-                    after,
-                    cluster: activeCluster
-                });
-                let newInfluencers = influencers.concat(response);
-                setInfluencers(newInfluencers);
-            } catch (error) {
-                throw new Error(error);
-            }
-        };
-        getLeaderBoard();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [activeCluster, after]);
-
     return (
         <div className={'container'}>
             <section className={'cluster-selection'}>
                 <div className={'cluster-group'}>
-                    <Cluster name={'BTC'} activeCluster={activeCluster} setActiveCluster={setActiveCluster} />
-                    <Cluster name={'ETH'} activeCluster={activeCluster} setActiveCluster={setActiveCluster} />
-                    <Cluster name={'XRP'} activeCluster={activeCluster} setActiveCluster={setActiveCluster} />
-                    <Cluster name={'Crypto'} activeCluster={activeCluster} setActiveCluster={setActiveCluster} />
+                    <Cluster name={'BTC'} activeCluster={activeCluster} setActiveCluster={changeCluster} />
+                    <Cluster name={'ETH'} activeCluster={activeCluster} setActiveCluster={changeCluster} />
+                    <Cluster name={'XRP'} activeCluster={activeCluster} setActiveCluster={changeCluster} />
+                    <Cluster name={'Crypto'} activeCluster={activeCluster} setActiveCluster={changeCluster} />
                 </div>
             </section>
             <section className={'big-cluster'}>
