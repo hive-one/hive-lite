@@ -1,11 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import './style.css';
 
 function InfluencerCard(props) {
     let score = props.item.score ? props.item.score.toFixed(2) : '';
     let changeWeek = props.item.changeWeek ? props.item.changeWeek.toFixed(2) : '';
+
+    const history = useHistory();
+
+    const onClick = () => {
+        history.push(`/profile/${props.item.screenName}`);
+    }
+    
     return (
-        <div className={'influencer-card'}>
+        <div 
+            className={'influencer-card'}
+            onClick={onClick}
+        >
             <span className={'rank'}>
                 {props.item.rank}
             </span>

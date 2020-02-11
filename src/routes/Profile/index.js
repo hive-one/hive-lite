@@ -1,9 +1,12 @@
 import React from 'react';
 
+import { useParams } from 'react-router-dom';
+
 function Profile() {
+    let { screenName } = useParams();
     return (
-        <div>
-            <h1>Profile</h1>
+        <div className={'container'}>
+            <h1>{screenName}</h1>
         </div>
     )
 }

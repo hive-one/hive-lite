@@ -17,7 +17,7 @@ function App() {
         <Router>
             <Header />
             <Switch>
-                <Route path='/profile'>
+                <Route path='/profile/:screenName'>
                     <Profile />
                 </Route>
                 <Route path='/'>
