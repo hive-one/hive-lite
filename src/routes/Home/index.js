@@ -23,8 +23,8 @@ function InfluencerCard(props) {
             <div className={'profile'}>
                 <img src={props.item.imageUrl} alt='avatar' />
                 <div className={'info'}>
-                    <span>{props.item.name}</span>
-                    <span>{props.item.screenName}</span>
+                    <span className={'name'}>{props.item.name}</span>
+                    <span className={'screen-name'}>@{props.item.screenName}</span>
                 </div>
             </div>
             <span className={'score'}>
