@@ -1,0 +1,23 @@
+header {
+    height: 90px;
+    width: 100vw;
+    background: #827AFF;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 119px;
+    color: white;
+    fill: white;
+    font-size: 22px;
+}
+
+.logo svg {
+    margin-left: 8px;
+    height: 28px;
+    width: 28px;
+}

@@ -6,6 +6,8 @@ import {
     Route
 } from "react-router-dom";
 
+import Header from './header';
+
 import Home from '../routes/Home';
 import Profile from '../routes/Profile';
 
@@ -13,6 +15,7 @@ import Profile from '../routes/Profile';
 function App() {
     return (
         <Router>
+            <Header />
             <Switch>
                 <Route path='/profile'>
                     <Profile />
