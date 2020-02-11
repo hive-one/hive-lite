@@ -1,5 +1,5 @@
 .container {
-    padding: 20px;
+    padding: 20px 20px 0 20px;
 }
 
 .cluster-selection {
@@ -47,4 +47,70 @@
 
 .cluster-selection .cluster-group .cluster:hover, .cluster-selection .cluster-group .cluster-active {
     background: #E5E5E5;
+}
+
+.big-cluster {
+    display: flex;
+    flex-direction: row;
+    height: 166px;
+}
+
+.big-cluster img {
+    height: 100px;
+    width: 100px
+}
+
+.big-cluster h2 {
+    margin-left: 30px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 42px;
+
+    color: #000000;
+}
+
+.leaderboard {
+    background: #FAFBFD;
+    min-height: 100vh;
+    margin: 0 -20px;
+    padding: 40px;
+}
+
+.leaderboard .table {
+    margin: auto;
+    max-width: 75%;
+}
+
+.leaderboard .table .header, .leaderboard .table .influencer-card {
+    display: grid;
+    grid-template-columns: 10% 40% 12.5% 12.5% 12.5% 12.5%;
+    padding: 0 20px;
+}
+
+.leaderboard .table .influencer-card {
+    height: 105px;
+    background: #FFFFFF;
+    border: 1px solid #EEEDFF;
+    border-radius: 6px 0px 0px 6px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.leaderboard .table .influencer-card .profile {
+    display: grid;
+    grid-template-columns: 50px auto;
+    grid-gap: 17px;
+}
+
+.leaderboard .table .influencer-card .profile img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.leaderboard .table .influencer-card .profile .info {
+    display: flex;
+    flex-direction: column;
 }
