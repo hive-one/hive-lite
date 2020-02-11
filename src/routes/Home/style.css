@@ -1,0 +1,50 @@
+.container {
+    padding: 20px;
+}
+
+.cluster-selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+}
+
+.cluster-selection .cluster-group {
+    display: flex;
+}
+
+.cluster-selection .cluster-group .cluster {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    cursor: pointer;
+
+    width: 154px;
+    height: 58px;
+
+    background: #FFFFFF;
+    border: 1px solid #EEEDFF;
+
+    text-align: center;
+
+    transition: background .33s ease;
+}
+
+.cluster-selection .cluster-group .cluster img {
+    height: 25px;
+    width: 25px;
+}
+
+.cluster-selection .cluster-group .cluster:first-child {
+    border-radius: 6px 0px 0px 6px;
+}
+
+.cluster-selection .cluster-group .cluster:last-child {
+    border-radius: 0px 6px 6px 0px;
+}
+
+.cluster-selection .cluster-group .cluster:hover, .cluster-selection .cluster-group .cluster-active {
+    background: #E5E5E5;
+}
