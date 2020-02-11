@@ -13,6 +13,8 @@ const CLUSTER_ABBR_NAME_MAP = {
 }
 
 function InfluencerCard(props) {
+    let score = props.item.score ? props.item.score.toFixed(2) : '';
+    let changeWeek = props.item.changeWeek ? props.item.changeWeek.toFixed(2) : '';
     return (
         <div className={'influencer-card'}>
             <span className={'rank'}>
@@ -26,7 +28,7 @@ function InfluencerCard(props) {
                 </div>
             </div>
             <span className={'score'}>
-                {props.item.score.toFixed(2)}
+                {score}
             </span>
             <span className={'following'}>
                 {props.item.following}
@@ -35,7 +37,7 @@ function InfluencerCard(props) {
                 {props.item.followers}
             </span>
             <span className={'change'}>
-                {props.item.changeWeek.toFixed(2)}
+                {changeWeek}
             </span>
         </div>
     )
