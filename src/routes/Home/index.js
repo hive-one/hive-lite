@@ -18,7 +18,7 @@ function Cluster(props) {
             className={`cluster${(isActive ? ' cluster-active': '')}`}
             onClick={setActiveCluster}
         >
-            <img src={CLUSTER_IMAGE_MAP[props.name]} />
+            <img src={CLUSTER_IMAGE_MAP[props.name]} alt='Cluster Icon' />
             <span>{props.name}</span>
         </div>
     )
