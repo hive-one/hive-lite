@@ -3,6 +3,8 @@ import './style.css';
 import hive from 'hiveone-js';
 import { Waypoint } from 'react-waypoint';
 
+import InfluencerCard from '../../components/influencerCard';
+
 const hiveAPI = hive({ apiKey: '5460ce138ce3d46ae5af00018c576af991e3054a' });
 
 const CLUSTER_ABBR_NAME_MAP = {
@@ -10,37 +12,6 @@ const CLUSTER_ABBR_NAME_MAP = {
     'ETH': 'Ethereum',
     'XRP': 'Ripple',
     'Crypto': 'All Crypto',
-}
-
-function InfluencerCard(props) {
-    let score = props.item.score ? props.item.score.toFixed(2) : '';
-    let changeWeek = props.item.changeWeek ? props.item.changeWeek.toFixed(2) : '';
-    return (
-        <div className={'influencer-card'}>
-            <span className={'rank'}>
-                {props.item.rank}
-            </span>
-            <div className={'profile'}>
-                <img src={props.item.imageUrl} alt='avatar' />
-                <div className={'info'}>
-                    <span className={'name'}>{props.item.name}</span>
-                    <span className={'screen-name'}>@{props.item.screenName}</span>
-                </div>
-            </div>
-            <span className={'score'}>
-                {score}
-            </span>
-            <span className={'following'}>
-                {props.item.following}
-            </span>
-            <span className={'followers'}>
-                {props.item.followers}
-            </span>
-            <span className={'change'}>
-                {changeWeek}
-            </span>
-        </div>
-    )
 }
 
 function Cluster(props) {
