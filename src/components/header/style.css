@@ -1,6 +1,6 @@
 header {
     height: 90px;
-    width: 100vw;
+    /* width: 100vw; */
     background: #827AFF;
     display: flex;
     align-items: center;
