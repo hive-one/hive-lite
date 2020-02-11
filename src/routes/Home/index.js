@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
 import hive from 'hiveone-js';
+import { Waypoint } from 'react-waypoint';
+
 const hiveAPI = hive({ apiKey: '5460ce138ce3d46ae5af00018c576af991e3054a' });
 
 const CLUSTER_ABBR_NAME_MAP = {
@@ -60,6 +62,28 @@ function Home() {
     const [after, setAfter] = useState(0);
     const [influencers, setInfluencers] = useState([]);
 
+    const waypointEnter = (e) => {
+        if (e.event) {
+            setAfter(after + 50);
+        }
+    }
+
+    const renderInfluencers = () => {
+        const rows = influencers.map((item, index) => (
+            <InfluencerCard key={index} item={item} />
+        ));
+
+
+        rows.push(
+            <Waypoint
+                key={rows.length + 1}
+                onEnter={waypointEnter}
+            />
+        )
+
+        return rows;
+    }
+
     useEffect(() => {
         const getLeaderBoard = async () => {
             try {
@@ -67,12 +91,14 @@ function Home() {
                     after,
                     cluster: activeCluster
                 });
-                setInfluencers(response);
+                let newInfluencers = influencers.concat(response);
+                setInfluencers(newInfluencers);
             } catch (error) {
                 throw new Error(error);
             }
         };
         getLeaderBoard();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeCluster, after]);
 
     return (
@@ -99,9 +125,7 @@ function Home() {
                         <span>Followers</span>
                         <span>1W*</span>
                     </div>
-                    {influencers.map((item, index) => (
-                        <InfluencerCard key={index} item={item} />
-                    ))}
+                    {renderInfluencers()}
                 </div>
             </section>
         </div>
